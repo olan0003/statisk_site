@@ -1,11 +1,18 @@
+const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+const category = urlParams.get("category");
+
+console.log("category", category);
+
 const container2 = document.querySelector(".container2");
 
-fetch(`https://kea-alt-del.dk/t7/api/products`)
+fetch(`https://kea-alt-del.dk/t7/api/products?category=${category}`)
   .then((response) => response.json())
   .then((data) => showlist(data));
 
 function showlist(products) {
-  console.log(products);
   let markup = "";
   products
     .map((product) => {
@@ -30,13 +37,13 @@ function showlist(products) {
                 </div>
 
                 <div class="button-container">
-                    <a href="produkt.html" class="button">View Details</a>
+                    <a href="produkt.html?product_id=${product.id}"" class="button">View Details</a>
                 </div>
 
             </div>`;
     })
 
     .join("");
-  console.log[markup];
+
   container2.innerHTML = markup;
 }

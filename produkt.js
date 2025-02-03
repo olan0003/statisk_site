@@ -1,4 +1,11 @@
-let productId = 1165;
+const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+const productId = urlParams.get("product_id");
+
+console.log("product_id", productId);
+
 let productcontainer = document.querySelector(".container3");
 
 fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
@@ -65,9 +72,3 @@ fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
      
      `;
   });
-
-  
-
-
-
-  
