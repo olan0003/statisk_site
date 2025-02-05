@@ -13,11 +13,14 @@ fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
   .then((data) => {
     productcontainer.innerHTML = `
      
-     
+    
      <div class="box3">
 
                 <img src="https://kea-alt-del.dk/t7/images/webp/640/${productId}.webp" alt="tshirt">
-
+                
+ <div class="${data.soldout && "soldout"} ${!data.soldout && "hide"}"">  
+SOLD OUT
+ </div>
             </div>
 
             <div class="box3">
@@ -49,7 +52,18 @@ fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
 
                 <h3 class="sidsteh3"> ${data.brandname} ${data.articletype}</h3>
 
-                <h3 class="sidsteh3">Pris: ${data.price}</h3>
+
+                    
+                    <div class="pris">
+                        <h3 class="pris_tilbude"> DKK ${data.price}</h3>
+                        <div class="${data.discount && "tilbud"} ${!data.discount && "hide"}">
+                            <h3> ${data.discount}%</h3>
+                                                    <h3> now DKK${data.price - (data.price * data.discount) / 100}</h3>
+                        </div>
+
+                        
+
+                    </div>
 
 
                 <h3 class="size"> Choosing size</h3>

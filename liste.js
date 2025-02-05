@@ -21,6 +21,11 @@ function showlist(products) {
                     <div class="imgt">
                         <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="tshirt">
                     </div>
+
+ <div class="${product.soldout && "soldout"} ${!product.soldout && "hide"}"">  
+SOLD OUT
+ </div>
+
                 </div>
                 <div class="text2">
                     <div>
@@ -31,9 +36,14 @@ function showlist(products) {
                         <p>tshirt Nike</p>
                     </div>
 
-                    <div>
-                        <h3>${product.price}</h3>
-                    </div>
+                   <div class="pris">
+                        <h3 class="pris_tilbude">DDK ${product.price}</h3>
+                        <div class="${product.discount && "tilbud"} ${!product.discount && "hide"}">
+                            <h3> ${product.discount}% </h3>
+                                                    <h3> now ${product.price - (product.price * product.discount) / 100}</h3>
+                        </div>
+
+                    </div> 
                 </div>
 
                 <div class="button-container">
